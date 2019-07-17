@@ -69,7 +69,7 @@ function ($request, $response, $args) {
      */
     $repo = SystemContainer::getItem(IProtocolRepository::class);
     $protocols = $repo->all([
-        IProtocol::FIELD__ACCEPT => [$response->getHeader('ACCEPT'), '*']
+        IProtocol::FIELD__ACCEPT => [$request->getHeader('ACCEPT'), '*']
     ]);
     
     foreach ($protocols as $protocol) {
