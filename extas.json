@@ -1,0 +1,45 @@
+{
+  "name": "extas.protocol",
+  "package_classes": [
+    {
+      "interface": "extas\\interfaces\\protocols\\IProtocolRepository",
+      "class": "extas\\components\\protocols\\ProtocolRepository"
+    }
+  ],
+  "protocols": [
+    {
+      "name": "cookie",
+      "title": "Cookie",
+      "description": "Cookie data",
+      "accept": ["*"],
+      "class": "extas\\components\\protocols\\ProtocolCookie"
+    },
+    {
+      "name": "session",
+      "title": "Session",
+      "description": "Session data",
+      "accept": ["*"],
+      "class": "extas\\components\\protocols\\ProtocolSession"
+    },
+    {
+      "name": "form",
+      "title": "Form",
+      "description": "Form data ($_REQUEST)",
+      "accept": ["application/text", "multipart/form-data", "application/json"],
+      "class": "extas\\components\\protocols\\ProtocolForm"
+    },
+    {
+      "name": "json",
+      "title": "JSON",
+      "description": "JSON data",
+      "accept": ["application/json"],
+      "class": "extas\\components\\protocols\\ProtocolJson"
+    }
+  ],
+  "plugins": [
+    {
+      "class": "extas\\components\\plugins\\PluginInstallProtocols",
+      "stage": "extas.install"
+    }
+  ]
+}
