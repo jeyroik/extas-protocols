@@ -1,7 +1,6 @@
 <?php
-namespace extas\components\plugins\protocols;
+namespace extas\components\plugins;
 
-use extas\components\plugins\PluginInstallDefault;
 use extas\components\protocols\Protocol;
 use extas\interfaces\protocols\IProtocolRepository;
 
