@@ -18,7 +18,7 @@ class ProtocolJson extends Protocol
         if ($data) {
             try {
                 $decoded = json_decode($data, true);
-                array_merge($args, $decoded);
+                is_array($decoded) && array_merge($args, $decoded);
             } catch (\Exception $e) {
             }
         }
