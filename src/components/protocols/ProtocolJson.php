@@ -1,6 +1,8 @@
 <?php
 namespace extas\components\protocols;
 
+use Psr\Http\Message\RequestInterface;
+
 /**
  * Class ProtocolJson
  *
@@ -11,14 +13,15 @@ class ProtocolJson extends Protocol
 {
     /**
      * @param array $args
+     * @param RequestInterface $request
      */
-    public function __invoke(array &$args = [])
+    public function __invoke(array &$args = [], RequestInterface $request)
     {
         $data = file_get_contents('php://input');
         if ($data) {
             try {
                 $decoded = json_decode($data, true);
-                is_array($decoded) && array_merge($args, $decoded);
+                is_array($decoded) && ($args = array_merge($args, $decoded));
             } catch (\Exception $e) {
             }
         }

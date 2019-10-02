@@ -6,6 +6,7 @@ use extas\components\Item;
 use extas\components\THasClass;
 use extas\components\THasDescription;
 use extas\components\THasName;
+use Psr\Http\Message\RequestInterface;
 
 /**
  * Class Protocol
@@ -21,12 +22,13 @@ class Protocol extends Item implements IProtocol
 
     /**
      * @param array $args
+     * @param RequestInterface $request
      */
-    public function __invoke(array &$args = [])
+    public function __invoke(array &$args = [], RequestInterface $request)
     {
         $class = $this->getClass();
         $protocol = new $class();
-        $protocol($args);
+        $protocol($args, $request);
     }
 
     /**

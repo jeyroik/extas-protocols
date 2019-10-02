@@ -1,6 +1,8 @@
 <?php
 namespace extas\components\protocols;
 
+use Psr\Http\Message\RequestInterface;
+
 /**
  * Class ProtocolCookie
  *
@@ -9,8 +11,8 @@ namespace extas\components\protocols;
  */
 class ProtocolCookie extends Protocol
 {
-    public function __invoke(array &$args = [])
+    public function __invoke(array &$args = [], RequestInterface $request)
     {
-        array_merge($args, $_COOKIE);
+        $args = array_merge($args, $_COOKIE);
     }
 }

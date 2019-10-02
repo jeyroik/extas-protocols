@@ -1,6 +1,8 @@
 <?php
 namespace extas\components\protocols;
 
+use Psr\Http\Message\RequestInterface;
+
 /**
  * Class ProtocolForm
  *
@@ -13,9 +15,10 @@ class ProtocolForm extends Protocol
 
     /**
      * @param array $args
+     * @param RequestInterface $request
      */
-    public function __invoke(array &$args = [])
+    public function __invoke(array &$args = [], RequestInterface $request)
     {
-        array_merge($args, $_REQUEST);
+        $args = array_merge($args, $_REQUEST);
     }
 }

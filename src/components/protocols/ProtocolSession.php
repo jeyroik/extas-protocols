@@ -1,6 +1,7 @@
 <?php
 namespace extas\components\protocols;
 
+use Psr\Http\Message\RequestInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
@@ -13,12 +14,13 @@ class ProtocolSession extends Protocol
 {
     /**
      * @param array $args
+     * @param RequestInterface $request
      */
-    public function __invoke(array &$args = [])
+    public function __invoke(array &$args = [], RequestInterface $request)
     {
         $session = new Session();
         $data = $session->all();
 
-        array_merge($args, $data);
+        $args = array_merge($args, $data);
     }
 }

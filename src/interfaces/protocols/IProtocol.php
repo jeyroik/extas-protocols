@@ -5,6 +5,7 @@ use extas\interfaces\IHasClass;
 use extas\interfaces\IHasDescription;
 use extas\interfaces\IHasName;
 use extas\interfaces\IItem;
+use Psr\Http\Message\RequestInterface;
 
 /**
  * Interface IProtocol
@@ -32,8 +33,9 @@ interface IProtocol extends IItem, IHasName, IHasDescription, IHasClass
 
     /**
      * @param array $args
+     * @param RequestInterface $request
      *
      * @return void
      */
-    public function __invoke(array &$args = []);
+    public function __invoke(array &$args = [], RequestInterface $request);
 }
