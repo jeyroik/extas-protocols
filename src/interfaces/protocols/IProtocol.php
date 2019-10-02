@@ -37,5 +37,5 @@ interface IProtocol extends IItem, IHasName, IHasDescription, IHasClass
      *
      * @return void
      */
-    public function __invoke(array &$args = [], RequestInterface $request);
+    public function __invoke(array &$args = [], RequestInterface $request = null);
 }

@@ -15,7 +15,7 @@ class ProtocolJson extends Protocol
      * @param array $args
      * @param RequestInterface $request
      */
-    public function __invoke(array &$args = [], RequestInterface $request)
+    public function __invoke(array &$args = [], RequestInterface $request = null)
     {
         $data = file_get_contents('php://input');
         if ($data) {

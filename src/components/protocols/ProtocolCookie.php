@@ -11,7 +11,7 @@ use Psr\Http\Message\RequestInterface;
  */
 class ProtocolCookie extends Protocol
 {
-    public function __invoke(array &$args = [], RequestInterface $request)
+    public function __invoke(array &$args = [], RequestInterface $request = null)
     {
         $args = array_merge($args, $_COOKIE);
     }

@@ -16,7 +16,7 @@ class ProtocolSession extends Protocol
      * @param array $args
      * @param RequestInterface $request
      */
-    public function __invoke(array &$args = [], RequestInterface $request)
+    public function __invoke(array &$args = [], RequestInterface $request = null)
     {
         $session = new Session();
         $data = $session->all();

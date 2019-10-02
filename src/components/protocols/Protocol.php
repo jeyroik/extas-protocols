@@ -24,7 +24,7 @@ class Protocol extends Item implements IProtocol
      * @param array $args
      * @param RequestInterface $request
      */
-    public function __invoke(array &$args = [], RequestInterface $request)
+    public function __invoke(array &$args = [], RequestInterface $request = null)
     {
         $class = $this->getClass();
         $protocol = new $class();

@@ -19,18 +19,20 @@ class ProtocolParameterHeaderDefault extends Protocol
      * @param array $args
      * @param RequestInterface $request
      */
-    public function __invoke(array &$args = [], RequestInterface $request)
+    public function __invoke(array &$args = [], RequestInterface $request = null)
     {
-        $fromHeader = $this->grabHeaders($request);
-        $fromParameter = $this->grabParameters($request);
-        $default = $this->getDefault();
+        if ($request) {
+            $fromHeader = $this->grabHeaders($request);
+            $fromParameter = $this->grabParameters($request);
+            $default = $this->getDefault();
 
-        if (!isset($args[$this->protocolKey])) {
-            $args[$this->protocolKey] = is_null($fromParameter)
-                ? (is_null($fromHeader)
-                    ? $default
-                    : $fromHeader)
-                : $fromParameter;
+            if (!isset($args[$this->protocolKey])) {
+                $args[$this->protocolKey] = is_null($fromParameter)
+                    ? (is_null($fromHeader)
+                        ? $default
+                        : $fromHeader)
+                    : $fromParameter;
+            }
         }
     }
 

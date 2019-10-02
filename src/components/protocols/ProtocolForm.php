@@ -17,7 +17,7 @@ class ProtocolForm extends Protocol
      * @param array $args
      * @param RequestInterface $request
      */
-    public function __invoke(array &$args = [], RequestInterface $request)
+    public function __invoke(array &$args = [], RequestInterface $request = null)
     {
         $args = array_merge($args, $_REQUEST);
     }
