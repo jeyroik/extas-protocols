@@ -2,10 +2,6 @@
 
 Пакет для поддержки протоколов для Extas'a.
 
-# Установка
-
-`composer require jeyroik/extas-protocols`
-
 # Использование
 
 ## Создаём протокол
