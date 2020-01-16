@@ -4,8 +4,7 @@
   "require": {
     "jeyroik/extas-foundation":"*",
     "jeyroik/extas-installer":"*",
-    "jeyroik/extas-base":"*",
-    "symfony/http-foundation": "4.4.*"
+    "jeyroik/extas-base":"*"
   },
   "autoload": {
     "psr-4": {
