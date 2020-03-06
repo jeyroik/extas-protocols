@@ -12,9 +12,9 @@ use extas\components\repositories\Repository;
  */
 class ProtocolRepository extends Repository implements IProtocolRepository
 {
-    protected $itemClass = Protocol::class;
-    protected $pk = Protocol::FIELD__NAME;
-    protected $name = 'protocols';
-    protected $scope = 'extas';
-    protected $idAs = '';
+    protected string $itemClass = Protocol::class;
+    protected string $pk = Protocol::FIELD__NAME;
+    protected string $name = 'protocols';
+    protected string $scope = 'extas';
+    protected string $idAs = '';
 }

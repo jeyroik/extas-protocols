@@ -11,9 +11,9 @@ use Psr\Http\Message\RequestInterface;
  */
 class ProtocolParameterHeaderDefault extends Protocol
 {
-    protected $protocolKey = '';
+    public const HEADER__PREFIX = 'x-extas-';
 
-    const HEADER__PREFIX = 'x-extas-';
+    protected string $protocolKey = '';
 
     /**
      * @param array $args

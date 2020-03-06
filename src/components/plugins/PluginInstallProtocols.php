@@ -12,9 +12,9 @@ use extas\interfaces\protocols\IProtocolRepository;
  */
 class PluginInstallProtocols extends PluginInstallDefault
 {
-    protected $selfItemClass = Protocol::class;
-    protected $selfRepositoryClass = IProtocolRepository::class;
-    protected $selfUID = Protocol::FIELD__NAME;
-    protected $selfSection = 'protocols';
-    protected $selfName = 'protocol';
+    protected string $selfItemClass = Protocol::class;
+    protected string $selfRepositoryClass = IProtocolRepository::class;
+    protected string $selfUID = Protocol::FIELD__NAME;
+    protected string $selfSection = 'protocols';
+    protected string $selfName = 'protocol';
 }
