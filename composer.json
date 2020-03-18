@@ -2,7 +2,6 @@
   "name": "jeyroik/extas-protocols",
   "description": "Extas protocols package",
   "require": {
-    "jeyroik/extas-foundation":"2.*",
     "jeyroik/extas-installer":"2.*",
     "jeyroik/extas-base":"1.*"
   },
