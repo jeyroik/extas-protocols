@@ -1,5 +1,5 @@
 {
-  "name": "extas.protocol",
+  "name": "extas/protocols",
   "package_classes": [
     {
       "interface": "extas\\interfaces\\protocols\\IProtocolRepository",
