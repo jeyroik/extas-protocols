@@ -12,14 +12,26 @@ use Psr\Http\Message\RequestInterface;
 class ProtocolParameterHeaderDefault extends Protocol
 {
     public const HEADER__PREFIX = 'x-extas-';
+    public const FIELD__PROTOCOL_KEY = 'protocol_key';
 
     protected string $protocolKey = '';
+
+    /**
+     * ProtocolParameterHeaderDefault constructor.
+     * @param array $config
+     */
+    public function __construct(array $config = [])
+    {
+        parent::__construct($config);
+
+        $this->protocolKey = $this->config[static::FIELD__PROTOCOL_KEY] ?? $this->protocolKey;
+    }
 
     /**
      * @param array $args
      * @param RequestInterface $request
      */
-    public function __invoke(array &$args = [], RequestInterface $request = null)
+    public function __invoke(array &$args = [], RequestInterface $request = null): void
     {
         if ($request) {
             $fromHeader = $this->grabHeaders($request);

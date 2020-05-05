@@ -2,14 +2,15 @@
 namespace extas\components\protocols;
 
 use extas\components\Item;
-use extas\components\SystemContainer;
 use extas\interfaces\protocols\IProtocol;
-use extas\interfaces\protocols\IProtocolRepository;
 use extas\interfaces\protocols\IProtocolRunner;
+use extas\interfaces\stages\IStageProtocolRunAfter;
 use Psr\Http\Message\RequestInterface;
 
 /**
  * Class ProtocolRunner
+ *
+ * @method protocolRepository() IProtocolRepository
  *
  * @package extas\components\protocols
  * @author jeyroik@gmail.com
@@ -23,11 +24,10 @@ class ProtocolRunner extends Item implements IProtocolRunner
     public static function run(array &$args, RequestInterface $request)
     {
         /**
-         * @var $protocolRepo IProtocolRepository
          * @var $protocols IProtocol[]
          */
-        $protocolRepo = SystemContainer::getItem(IProtocolRepository::class);
-        $protocols = $protocolRepo->all([
+        $static = new static();
+        $protocols = $static->protocolRepository()->all([
             IProtocol::FIELD__ACCEPT => array_merge(
                 [static::HEADER__ANY],
                 $request->getHeader(static::HEADER__ACCEPT)
@@ -40,7 +40,10 @@ class ProtocolRunner extends Item implements IProtocolRunner
 
         $static = new static();
 
-        foreach ($static->getPluginsByStage(static::STAGE__PROTOCOL_RUN_AFTER) as $plugin) {
+        foreach ($static->getPluginsByStage(IStageProtocolRunAfter::NAME) as $plugin) {
+            /**
+             * @var IStageProtocolRunAfter $plugin
+             */
             $plugin($args, $request);
         }
     }

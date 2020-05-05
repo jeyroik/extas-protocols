@@ -4,12 +4,24 @@
     {
       "interface": "extas\\interfaces\\protocols\\IProtocolRepository",
       "class": "extas\\components\\protocols\\ProtocolRepository"
+    },
+    {
+      "interface": "protocolRepository",
+      "class": "extas\\components\\protocols\\ProtocolRepository"
     }
   ],
   "plugins": [
     {
       "class": "extas\\components\\plugins\\PluginInstallProtocols",
       "stage": "extas.install"
+    }
+  ],
+  "extensions": [
+    {
+      "class": "extas\\components\\extensions\\ExtensionRepositoryGet",
+      "interface": "extas\\interfaces\\extensions\\IExtensionRepositoryGet",
+      "subject": "*",
+      "methods": ["protocolRepository"]
     }
   ]
 }

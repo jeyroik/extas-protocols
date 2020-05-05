@@ -16,5 +16,4 @@ class ProtocolRepository extends Repository implements IProtocolRepository
     protected string $pk = Protocol::FIELD__NAME;
     protected string $name = 'protocols';
     protected string $scope = 'extas';
-    protected string $idAs = '';
 }

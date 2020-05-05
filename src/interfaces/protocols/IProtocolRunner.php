@@ -17,8 +17,6 @@ interface IProtocolRunner extends IItem
     const HEADER__ACCEPT = 'accept';
     const HEADER__ANY = '*';
 
-    const STAGE__PROTOCOL_RUN_AFTER = 'extas.protocol.run.after';
-
     /**
      * @param array $args
      * @param RequestInterface $request
