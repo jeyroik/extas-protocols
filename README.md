@@ -1,4 +1,9 @@
-# extas-protocols
+![tests](https://github.com/jeyroik/extas-protocols/workflows/PHP%20Composer/badge.svg?branch=master&event=push)
+![codecov.io](https://codecov.io/gh/jeyroik/extas-protocols/coverage.svg?branch=master)
+<a href="https://github.com/phpstan/phpstan"><img src="https://img.shields.io/badge/PHPStan-enabled-brightgreen.svg?style=flat" alt="PHPStan Enabled"></a> 
+<a href="https://codeclimate.com/github/jeyroik/extas-protocols/maintainability"><img src="https://api.codeclimate.com/v1/badges/a2eaabdf60b4b987179a/maintainability" /></a>
+
+# Описание
 
 Пакет для поддержки протоколов для Extas'a.
 
