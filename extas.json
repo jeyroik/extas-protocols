@@ -1,10 +1,7 @@
 {
   "name": "extas/protocols",
+  "installer_version": 3,
   "package_classes": [
-    {
-      "interface": "extas\\interfaces\\protocols\\IProtocolRepository",
-      "class": "extas\\components\\protocols\\ProtocolRepository"
-    },
     {
       "interface": "protocolRepository",
       "class": "extas\\components\\protocols\\ProtocolRepository"
@@ -12,8 +9,12 @@
   ],
   "plugins": [
     {
-      "class": "extas\\components\\plugins\\PluginInstallProtocols",
-      "stage": "extas.install"
+      "class": "extas\\components\\plugins\\init\\InitProtocols",
+      "stage": "extas.init.section.protocols"
+    },
+    {
+      "class": "extas\\components\\plugins\\uninstall\\UninstallProtocols",
+      "stage": "extas.uninstall.section.protocols"
     }
   ],
   "extensions": [
