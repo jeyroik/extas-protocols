@@ -1,16 +1,16 @@
 <?php
-namespace extas\components\plugins;
+namespace extas\components\plugins\init;
 
 use extas\components\protocols\Protocol;
 use extas\interfaces\protocols\IProtocolRepository;
 
 /**
- * Class ProtocolPluginextasServiceInstall
+ * Class InitProtocols
  *
- * @package extas\components\plugins\protocols
+ * @package extas\components\plugins\init
  * @author jeyroik@gmail.com
  */
-class PluginInstallProtocols extends PluginInstallDefault
+class InitProtocols extends InitSection
 {
     protected string $selfItemClass = Protocol::class;
     protected string $selfRepositoryClass = IProtocolRepository::class;
