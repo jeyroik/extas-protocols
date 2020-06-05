@@ -15,6 +15,7 @@ use extas\components\repositories\TSnuffRepository;
 
 use PHPUnit\Framework\TestCase;
 use Dotenv\Dotenv;
+use Psr\Http\Message\RequestInterface;
 
 /**
  * Class ProtocolTest
@@ -51,7 +52,7 @@ class ProtocolTest extends TestCase
         $this->assertEquals(['*'], $protocol->getAccept());
         $protocol->setClass(ProtocolEmpty::class);
         $data = [];
-        $protocol($data, $this->getPsrRequest());
+        $protocol($data, $this->getRequest());
         $this->assertArrayHasKey('test', $data);
         $this->assertEquals('is ok', $data['test']);
     }
@@ -69,7 +70,7 @@ class ProtocolTest extends TestCase
         ]));
 
         $data = [];
-        ProtocolRunner::run($data, $this->getPsrRequest());
+        ProtocolRunner::run($data, $this->getRequest());
 
         $this->assertArrayHasKey('test', $data);
         $this->assertEquals('is ok again', $data['test']);
@@ -84,7 +85,7 @@ class ProtocolTest extends TestCase
             ProtocolParameterHeaderDefault::FIELD__PROTOCOL_KEY => 'test'
         ]);
         $data = [];
-        $protocol($data, $this->getPsrRequest());
+        $protocol($data, $this->getRequest());
         $this->assertArrayHasKey('test', $data);
         $this->assertEquals('is ok', $data['test']);
 
@@ -95,7 +96,7 @@ class ProtocolTest extends TestCase
             ProtocolParameterHeaderDefault::FIELD__PROTOCOL_KEY => 'test2'
         ]);
         $data = [];
-        $protocol($data, $this->getPsrRequest());
+        $protocol($data, $this->getRequest());
         $this->assertArrayHasKey('test2', $data);
         $this->assertEquals('ok', $data['test2']);
 
@@ -106,8 +107,23 @@ class ProtocolTest extends TestCase
             ProtocolParameterHeaderDefault::FIELD__PROTOCOL_KEY => 'test3'
         ]);
         $data = [];
-        $protocol($data, $this->getPsrRequest());
+        $protocol($data, $this->getRequest());
         $this->assertArrayHasKey('test3', $data);
         $this->assertEmpty($data['test3']);
+    }
+
+    /**
+     * @return RequestInterface
+     */
+    protected function getRequest(): RequestInterface
+    {
+        return $this->getPsrRequest(
+            '',
+            [
+                'Content-type' => 'text/html',
+                ProtocolParameterHeaderDefault::HEADER__PREFIX . 'test' => 'is ok'
+            ],
+            'test2=ok'
+        );
     }
 }
