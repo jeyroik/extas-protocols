@@ -17,11 +17,11 @@
 ```php
 namespace my\extas\protocols;
 
-use extas\components\protocols\Protocol;
+use extas\components\protocols\Protocol;use Psr\Http\Message\RequestInterface;
 
 class JsonProtocol extends Protocol
 {
-    public function __invoke(array &$args = [])
+    public function __invoke(array &$args = [], RequestInterface $request = null) : void{
     {
         $json = file_get_contents('php://input');
         if ($json) {
@@ -58,7 +58,6 @@ class JsonProtocol extends Protocol
 
 ```php
 use extas\interafces\protocols\IProtocol;
-use extas\interafces\protocols\IProtocolRepository;
 use extas\components\SystemContainer;
 
 /**
@@ -68,16 +67,14 @@ use extas\components\SystemContainer;
  */
 function ($request, $response, $args) {
     /**
-     * @var $repo IProtocolRepository
      * @var $protocols IProtocol[]
      */
-    $repo = SystemContainer::getItem(IProtocolRepository::class);
-    $protocols = $repo->all([
+    $protocols = $this->protocolRepository()->all([
         IProtocol::FIELD__ACCEPT => [$request->getHeader('ACCEPT'), '*']
     ]);
     
     foreach ($protocols as $protocol) {
-        $protocol($args);
+        $protocol($args, $request);
     }
     
     print_r($args); // содержит данные из json
