@@ -2,7 +2,6 @@
 namespace extas\components\plugins\uninstall;
 
 use extas\components\protocols\Protocol;
-use extas\interfaces\protocols\IProtocolRepository;
 
 /**
  * Class UninstallProtocols
@@ -13,7 +12,7 @@ use extas\interfaces\protocols\IProtocolRepository;
 class UninstallProtocols extends UninstallSection
 {
     protected string $selfItemClass = Protocol::class;
-    protected string $selfRepositoryClass = IProtocolRepository::class;
+    protected string $selfRepositoryClass = 'protocolRepository';
     protected string $selfUID = Protocol::FIELD__NAME;
     protected string $selfSection = 'protocols';
     protected string $selfName = 'protocol';
