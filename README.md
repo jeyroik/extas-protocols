@@ -2,6 +2,9 @@
 ![codecov.io](https://codecov.io/gh/jeyroik/extas-protocols/coverage.svg?branch=master)
 <a href="https://github.com/phpstan/phpstan"><img src="https://img.shields.io/badge/PHPStan-enabled-brightgreen.svg?style=flat" alt="PHPStan Enabled"></a> 
 <a href="https://codeclimate.com/github/jeyroik/extas-protocols/maintainability"><img src="https://api.codeclimate.com/v1/badges/a2eaabdf60b4b987179a/maintainability" /></a>
+[![Latest Stable Version](https://poser.pugx.org/jeyroik/extas-protocols/v)](//packagist.org/packages/jeyroik/extas-q-crawlers)
+[![Total Downloads](https://poser.pugx.org/jeyroik/extas-protocols/downloads)](//packagist.org/packages/jeyroik/extas-q-crawlers)
+[![Dependents](https://poser.pugx.org/jeyroik/extas-protocols/dependents)](//packagist.org/packages/jeyroik/extas-q-crawlers)
 
 # Описание
 
@@ -14,11 +17,11 @@
 ```php
 namespace my\extas\protocols;
 
-use extas\components\protocols\Protocol;
+use extas\components\protocols\Protocol;use Psr\Http\Message\RequestInterface;
 
 class JsonProtocol extends Protocol
 {
-    public function __invoke(array &$args = [])
+    public function __invoke(array &$args = [], RequestInterface $request = null) : void{
     {
         $json = file_get_contents('php://input');
         if ($json) {
@@ -55,7 +58,6 @@ class JsonProtocol extends Protocol
 
 ```php
 use extas\interafces\protocols\IProtocol;
-use extas\interafces\protocols\IProtocolRepository;
 use extas\components\SystemContainer;
 
 /**
@@ -65,16 +67,14 @@ use extas\components\SystemContainer;
  */
 function ($request, $response, $args) {
     /**
-     * @var $repo IProtocolRepository
      * @var $protocols IProtocol[]
      */
-    $repo = SystemContainer::getItem(IProtocolRepository::class);
-    $protocols = $repo->all([
+    $protocols = $this->protocolRepository()->all([
         IProtocol::FIELD__ACCEPT => [$request->getHeader('ACCEPT'), '*']
     ]);
     
     foreach ($protocols as $protocol) {
-        $protocol($args);
+        $protocol($args, $request);
     }
     
     print_r($args); // содержит данные из json

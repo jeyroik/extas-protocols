@@ -2,7 +2,6 @@
 namespace extas\components\plugins\init;
 
 use extas\components\protocols\Protocol;
-use extas\interfaces\protocols\IProtocolRepository;
 
 /**
  * Class InitProtocols
@@ -13,7 +12,7 @@ use extas\interfaces\protocols\IProtocolRepository;
 class InitProtocols extends InitSection
 {
     protected string $selfItemClass = Protocol::class;
-    protected string $selfRepositoryClass = IProtocolRepository::class;
+    protected string $selfRepositoryClass = 'protocolRepository';
     protected string $selfUID = Protocol::FIELD__NAME;
     protected string $selfSection = 'protocols';
     protected string $selfName = 'protocol';
