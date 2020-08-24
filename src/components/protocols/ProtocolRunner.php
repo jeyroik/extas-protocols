@@ -4,13 +4,14 @@ namespace extas\components\protocols;
 use extas\components\Item;
 use extas\interfaces\protocols\IProtocol;
 use extas\interfaces\protocols\IProtocolRunner;
+use extas\interfaces\repositories\IRepository;
 use extas\interfaces\stages\IStageProtocolRunAfter;
 use Psr\Http\Message\RequestInterface;
 
 /**
  * Class ProtocolRunner
  *
- * @method protocolRepository() IProtocolRepository
+ * @method IRepository protocols()
  *
  * @package extas\components\protocols
  * @author jeyroik@gmail.com
@@ -27,7 +28,7 @@ class ProtocolRunner extends Item implements IProtocolRunner
          * @var $protocols IProtocol[]
          */
         $static = new static();
-        $protocols = $static->protocolRepository()->all([
+        $protocols = $static->protocols()->all([
             IProtocol::FIELD__ACCEPT => array_merge(
                 [static::HEADER__ANY],
                 $request->getHeader(static::HEADER__ACCEPT)

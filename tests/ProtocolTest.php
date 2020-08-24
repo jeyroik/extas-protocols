@@ -1,6 +1,8 @@
 <?php
 namespace tests;
 
+use extas\components\repositories\TSnuffRepositoryDynamic;
+use extas\components\THasMagicClass;
 use extas\interfaces\stages\IStageProtocolRunAfter;
 
 use extas\components\extensions\ExtensionRepository;
@@ -25,18 +27,20 @@ use Psr\Http\Message\RequestInterface;
  */
 class ProtocolTest extends TestCase
 {
-    use TSnuffRepository;
+    use TSnuffRepositoryDynamic;
     use TSnuffHttp;
+    use THasMagicClass;
 
     protected function setUp(): void
     {
         parent::setUp();
         $env = Dotenv::create(getcwd() . '/tests/');
         $env->load();
+        $this->createSnuffDynamicRepositories([
+            ['protocols', 'name', Protocol::class]
+        ]);
         $this->registerSnuffRepos([
-            'protocolRepository' => ProtocolRepository::class,
-            'pluginRepository' => PluginRepository::class,
-            'extensionRepository' => ExtensionRepository::class
+            'pluginRepository' => PluginRepository::class
         ]);
     }
 
@@ -63,7 +67,7 @@ class ProtocolTest extends TestCase
             Plugin::FIELD__CLASS => ProtocolEmpty::class,
             Plugin::FIELD__STAGE => IStageProtocolRunAfter::NAME
         ]));
-        $this->createWithSnuffRepo('protocolRepository', new Protocol([
+        $this->getMagicClass('protocols')->create(new Protocol([
             Protocol::FIELD__NAME => 'test',
             Protocol::FIELD__CLASS => ProtocolEmpty::class,
             Protocol::FIELD__ACCEPT => ['*']
